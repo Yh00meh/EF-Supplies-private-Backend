@@ -8,7 +8,7 @@ services:
       - NODE_ENV=development
       - USER=postgres
       - PASSWORD=3179
-      - HOST=db # Reference the database container by name
+      - HOST=localhost # Reference the database container by name
       - DATABASE=efdb
       - PORT=5432
     depends_on:
@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: 3179
       POSTGRES_DB: efdb
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 

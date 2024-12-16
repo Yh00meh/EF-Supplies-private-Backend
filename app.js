@@ -1,9 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const pool = require('./index'); // Import the database connection
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:3001' })); // Adjust if necessary
+
+const { Pool } = require('pg');
+require('dotenv').config();
+
+const pool = new Pool({
+  user: process.env.USER,
+  host: process.env.HOST,
+  database: process.env.DATABASE,
+  password: process.env.PASSWORD,
+  port: process.env.PORT,
+});
 
 app.get('/api/users', async (req, res) => {
   try {
