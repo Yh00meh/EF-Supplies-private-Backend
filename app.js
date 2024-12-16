@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3001' })); // Adjust if necessary
+app.use(cors({ origin: 'http://localhost:3000' })); // Adjust if necessary
 
 const { Pool } = require('pg');
 require('dotenv').config();
@@ -25,4 +25,4 @@ app.get('/api/users', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Backend server running on port 3000'));
+app.listen(3001, () => console.log('Backend server running on port 3001'));
