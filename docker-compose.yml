@@ -3,27 +3,27 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000" # Maps container port 3000 to host port 3000
+      - "3001:3000" # Map container port 3000 to host port 3001
     environment:
       - NODE_ENV=development
-      - USER=postgres # From PostgreSQL setup
+      - USER=postgres
       - PASSWORD=3179
-      - HOST=localhost
-      - DATABASE=EFdb
+      - HOST=db # Reference the database container by name
+      - DATABASE=efdb
       - PORT=5432
     depends_on:
       - db
 
   db:
-    image: postgres:15
+    image: postgres:17
     environment:
-      POSTGRES_USER: postgres # Database credentials
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 3179
-      POSTGRES_DB: EFdb
+      POSTGRES_DB: efdb
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data # For persistent database storage
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
   pgdata:
