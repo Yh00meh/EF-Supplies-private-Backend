@@ -1,19 +1,23 @@
 services:
   app:
+    networks:
+      - test-network
     build: .
     ports:
-      - "3001:3001" # Map container port 3000 to host port 3001
+      - "3001:3001"
     environment:
       - NODE_ENV=development
       - USER=postgres
       - PASSWORD=3179
-      - HOST=localhost # Reference the database container by name
+      - HOST=localhost
       - DATABASE=efdb
       - PORT=5432
     depends_on:
       - db
 
   db:
+    networks:
+      - test-network
     image: postgres:17
     environment:
       POSTGRES_USER: postgres
@@ -23,6 +27,12 @@ services:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-
+networks:
+  test-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
 volumes:
   pgdata:
