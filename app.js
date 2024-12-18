@@ -5,7 +5,7 @@ require('dotenv').config();
 const { Pool } = require('pg');
 
 const app = express();
-app.use(cors({ origin: 'https://ef-supplies-frontend-new.onrender.com' })); // Adjust if necessary
+app.use(cors()); // Adjust if necessary
 app.use(express.json());
 
 const pool = new Pool({
