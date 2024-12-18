@@ -1,9 +1,7 @@
--- Create a Database
-
--- Connect to the newly created database
-
--- Create Tables
--- Table for users
+Create a Database
+Connect to the newly created database
+Create Tables
+Table for users
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,       -- Auto-incrementing primary key
     name VARCHAR(100) NOT NULL,       -- User's full name
@@ -41,3 +39,24 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
+-- Tests
+
+-- Insert sample users
+INSERT INTO users (name, email, password) VALUES 
+('John Doe', 'john.doe@example.com', 'hashed_password_123'),
+('Jane Smith', 'jane.smith@example.com', 'hashed_password_456');
+
+-- Insert sample products
+INSERT INTO products (name, description, price, stock_quantity) VALUES
+('Starter Kit', 'A bundle with basic supplies.', 49.99, 100),
+('Cleaning Kit', 'Cleaning essentials for dorms.', 29.99, 50);
+
+-- Insert a sample order
+INSERT INTO orders (user_id, total_price) VALUES
+(1, 79.98);
+
+-- Insert sample order items
+INSERT INTO order_items (order_id, product_id, quantity, price) VALUES
+(1, 1, 1, 49.99),
+(1, 2, 1, 29.99);
