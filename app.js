@@ -8,6 +8,8 @@ const app = express();
 app.use(cors()); // Adjust if necessary
 app.use(express.json());
 
+
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
