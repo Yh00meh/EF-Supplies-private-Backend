@@ -15,7 +15,7 @@ const pool = new Pool({
   },
 });
 
-//test to check if backend is connected to db
+//tests to check if backend is connected to db
 app.get('/api/users', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM users'); // Query the database
@@ -23,6 +23,16 @@ app.get('/api/users', async (req, res) => {
   } catch (error) {
     console.error('Database query error:', error);
     res.status(500).json({ error: 'Database query failed' });
+  }
+});
+
+app.get('/api/test-db', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    res.json({ message: 'Database connected successfully', timestamp: result.rows[0].now });
+  } catch (error) {
+    console.error('Database connection error:', error);
+    res.status(500).json({ error: 'Failed to connect to the database' });
   }
 });
 
