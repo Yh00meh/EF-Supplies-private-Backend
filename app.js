@@ -27,7 +27,12 @@ app.post('/api/register', async (req, res) => {
       return res.status(400).json({ error: 'User already exists' });
     }
 
-    // Insert the new user without password encryption
+    // Check if name is valid
+    if (!name || name.length < 3) {
+      return res.status(400).json({ error: 'Name must be at least 3 characters long.' });
+    }
+
+    // Insert the new user
     const result = await pool.query(
       'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *',
       [name, email, password]
