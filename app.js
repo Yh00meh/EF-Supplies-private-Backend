@@ -16,6 +16,17 @@ const pool = new Pool({
   port: process.env.PORT,
 });
 
+//test to check if backend is connected to db
+app.get('/api/users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users'); // Query the database
+    res.json(result.rows); // Send the query result as JSON
+  } catch (error) {
+    console.error('Database query error:', error);
+    res.status(500).json({ error: 'Database query failed' });
+  }
+});
+
 // REGISTER USER 
 app.post('/api/register', async (req, res) => {
   const { name, email, password } = req.body;
