@@ -9,11 +9,10 @@ app.use(cors({ origin: 'https://ef-supplies-frontend-new.onrender.com' })); // A
 app.use(express.json());
 
 const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 //test to check if backend is connected to db
