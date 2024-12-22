@@ -17,26 +17,26 @@ const pool = new Pool({
   },
 });
 
-// //tests to check if backend is connected to db
-// app.get('/api/users', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM users'); // Query the database
-//     res.json(result.rows); // Send the query result as JSON
-//   } catch (error) {
-//     console.error('Database query error:', error);
-//     res.status(500).json({ error: 'Database query failed' });
-//   }
-// });
+ //tests to check if backend is connected to db
+ app.get('/api/users', async (req, res) => {
+   try {
+     const result = await pool.query('SELECT * FROM users'); // Query the database
+     res.json(result.rows); // Send the query result as JSON
+   } catch (error) {
+     console.error('Database query error:', error);
+     res.status(500).json({ error: 'Database query failed' });
+   }
+ });
 
-// app.get('/api/test-db', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT NOW()');
-//     res.json({ message: 'Database connected successfully', timestamp: result.rows[0].now });
-//   } catch (error) {
-//     console.error('Database connection error:', error);
-//     res.status(500).json({ error: 'Failed to connect to the database' });
-//   }
-// });
+ app.get('/api/test-db', async (req, res) => {
+   try {
+     const result = await pool.query('SELECT NOW()');
+     res.json({ message: 'Database connected successfully', timestamp: result.rows[0].now });
+   } catch (error) {
+     console.error('Database connection error:', error);
+     res.status(500).json({ error: 'Failed to connect to the database' });
+   }
+ });
 
 // REGISTER USER 
 app.post('/api/register', async (req, res) => {
